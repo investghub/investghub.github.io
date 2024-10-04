@@ -196,8 +196,7 @@ select {
 button,
 html [type="button"],
 [type="reset"],
-[type="submit"] {
-  -webkit-appearance: button; }
+[type="submit"] 
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -214,8 +213,7 @@ input[type="checkbox"] {
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
-input[type="month"] {
-  -webkit-appearance: listbox; }
+input[type="month"] 
 
 textarea {
   overflow: auto;
@@ -247,7 +245,7 @@ progress {
 
 [type="search"] {
   outline-offset: -2px;
-  -webkit-appearance: none; }
+  }
 
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
@@ -505,8 +503,7 @@ select {
 button,
 html [type="button"],
 [type="reset"],
-[type="submit"] {
-  -webkit-appearance: button; }
+[type="submit"] 
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -523,8 +520,7 @@ input[type="checkbox"] {
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
-input[type="month"] {
-  -webkit-appearance: listbox; }
+input[type="month"] 
 
 textarea {
   overflow: auto;
@@ -556,7 +552,7 @@ progress {
 
 [type="search"] {
   outline-offset: -2px;
-  -webkit-appearance: none; }
+  }
 
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
@@ -4731,7 +4727,7 @@ button.close {
   padding: 0;
   background-color: transparent;
   border: 0;
-  -webkit-appearance: none; }
+  }
 
 .modal-open {
   overflow: hidden; }
@@ -9663,7 +9659,12 @@ ul.ascii > li > ul > li:last-child > ul > li:last-child > ul > li:last-child > u
     background-color: #ddd;
 }
 
-@media screen and (max-width: 400px) {
+.nav-link.inactive {
+  pointer-events: none; /* Disable click */
+  color: gray; /* Change color to show it's inactive */
+}
+
+@media screen and (max-width: 550px) {
   .dropdown-content .dropdown-columns .dropdown-column {
     display: none;
   }
@@ -9711,13 +9712,16 @@ footer {
   padding-top: 20px;
   border-top: 1px solid #555;
 }
+
+.footer-text {
+  text-decoration: none;
+}
 .social-icons {
   margin-top: 20px;
+  border-radius: 5px;
 }
 .social-icons a {
-  color: white;
-  font-size: 20px;
-  margin: 0 10px;
+  margin: 10px;
   text-decoration: none;
 }
 .about-card {
@@ -9947,45 +9951,101 @@ button:hover {
   display: none;
 }
 
-.mySlides {display: none;}
-img {vertical-align: middle;}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 350px;
+.slider-container {
   position: relative;
-  margin: auto;
+  width: 600px;
+  height: 100px;
+  overflow: hidden;
+ 
 }
 
-/* The dots/bullets/indicators */
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+.container-slide {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+ 
 }
 
-.active {
-  background-color: #717171;
+.slide {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 5s;
+.text {
+  width: 70%;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: center;
+  color: white;
+
+
 }
 
-@keyframes fade {
-  from {opacity: .9} 
-  to {opacity: 1}
+.image img {
+  width: 150px;
+  height: 100px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 400px) {
-  .text {font-size: 11px}
+.controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.controls .prev,
+.controls .next {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+}
+
+.controls .prev:hover,
+.controls .next:hover {
+  background-color: #555;
+}
+
+/* Media query to hide the image when screen width is 400px or less */
+@media (max-width: 400px) {
+  .image {
+      display: none; /* Only hide the image container */
+  }
+
+  .text {
+      width: 100%; /* Take full width when image is gone */
+      text-align: center; /* Center the text */
+  }
+}
+
+/* Always show the active slide */
+.slide-active {
+  display: flex;
+}
+
+figure {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+figcaption {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
 }
 
 

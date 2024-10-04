@@ -159,22 +159,50 @@ function copyScript() {
   }, 2000);  // Message disappears after 2 seconds
 }
 
-let slideIndex = 0;
-showSlides();
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
 
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 5000); // Change image every 2 seconds
+// Function to show the active slide
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.display = 'none'; // Hide all slides initially
+        slide.classList.remove('slide-active'); // Remove active class from all slides
+    });
+    slides[index].style.display = 'flex'; // Show the current slide
+    slides[index].classList.add('slide-active'); // Add active class to the current slide
 }
+
+// Function to move to the next slide
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length; // Loop to next slide
+    showSlide(currentSlide);
+}
+
+// Function to move to the previous slide
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Loop to previous slide
+    showSlide(currentSlide);
+}
+
+// Show the first slide initially
+showSlide(currentSlide);
+
+// Automatically move to the next slide every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Manual controls for next/prev buttons
+document.querySelector('.next').addEventListener('click', nextSlide);
+document.querySelector('.prev').addEventListener('click', prevSlide);
+
+function handleLinkActivation() {
+  const link = document.getElementById('articlesLink');
+  if (window.innerWidth <= 550) {
+      link.classList.remove('inactive');  // Make link active
+  } else {
+      link.classList.add('inactive');  // Make link inactive
+  }
+}
+
+// Run the function on page load and on window resize
+window.addEventListener('resize', handleLinkActivation);
+window.addEventListener('load', handleLinkActivation);
