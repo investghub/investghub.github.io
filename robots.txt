@@ -1,13 +1,6 @@
-User-agent: Mediapartners-Google
-Disallow: 
-
 User-agent: * 
-Disallow: /search* #
 Disallow: /terms-of-service.html
-Disallow: /about.html
-Disallow: /contact-us.html
 Disallow: /credits.html
 Disallow: /docs.html
-Allow: /*.html 
 
 Sitemap: https://investghub.com/sitemap.xml
