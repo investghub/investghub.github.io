@@ -10086,7 +10086,7 @@ input {
 .button-group {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 20px; 
 }
 button {
   padding: 10px;
@@ -10103,7 +10103,7 @@ button:hover {
   width: 70%;
 }
 #resetBtn {
-  width: 25%;
+  width: 30%;
   background-color: #f44336;
 }
 #resetBtn:hover {
@@ -10171,27 +10171,7 @@ button:hover {
   cursor: help;
   margin-left: 5px;
 }
-.tooltip-roi .tooltiptext-roi {
-  visibility: hidden;
-  width: 200px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -100px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.tooltip-roi:hover .tooltiptext-roi {
-  visibility: visible;
-  opacity: 1;
-}
+
 @media (max-width: 768px) {
   .container-roi {
       flex-direction: column;
@@ -10199,6 +10179,9 @@ button:hover {
   .input-section, .result-section {
       flex-basis: 100%;
   }
+  .button-group {
+    flex-direction: column;
+}
 }
 
 .calculator-container {
@@ -10214,6 +10197,7 @@ button:hover {
 .calculator, .results {
   padding: 20px;
   width: 50%;
+  font-size: 16px;
 }
 .calculator {
   border-right: 1px solid #e0e0e0;
@@ -10258,32 +10242,7 @@ button:hover {
 #refreshButton:hover {
   background-color: #45a049;
 }
-.tooltip-tbill {
-  position: relative;
-  display: inline-block;
-  cursor: help;
-}
-.tooltip-tbill .tooltiptext-tbill {
-  visibility: hidden;
-  width: 200px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -100px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.tooltip-tbill:hover .tooltiptext-tbill {
-  visibility: visible;
-  opacity: 1;
-}
+
 .result-field {
   margin-top: 10px;
 }
@@ -10305,26 +10264,11 @@ button:hover {
   .calculator {
       border-bottom: 1px solid #e0e0e0;
   }
+  .button-container {
+    flex-direction: column;
+}
 }
 
-@media (max-width: 480px) {
-  body {
-      padding: 10px;
-  }
-  h1 {
-      font-size: 1.2em;
-  }
-  .tooltip .tooltiptext {
-      width: 150px;
-      margin-left: -75px;
-  }
-  .button-container {
-      flex-direction: column;
-  }
-  button {
-      margin: 5px 0;
-  }
-}
 
 
 
