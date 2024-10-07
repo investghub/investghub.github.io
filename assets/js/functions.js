@@ -206,3 +206,87 @@ function handleLinkActivation() {
 // Run the function on page load and on window resize
 window.addEventListener('resize', handleLinkActivation);
 window.addEventListener('load', handleLinkActivation);
+
+
+function calculateROI() {
+  const invested = parseFloat(document.getElementById('invested').value);
+  const returned = parseFloat(document.getElementById('returned').value);
+  const duration = parseFloat(document.getElementById('duration').value);
+  
+  if (isNaN(invested) || isNaN(returned) || isNaN(duration) || invested < 0 || returned < 0 || duration < 0.1) {
+      alert('Please enter valid numbers for all fields. Investment time should be at least 0.1 years.');
+      return;
+  }
+  
+  const profit = returned - invested;
+  const roi = (profit / invested) * 100;
+  const annualROI = roi / duration;
+  
+  document.getElementById('profit').textContent = `GHS ${profit.toFixed(2)}`;
+  document.getElementById('roi').textContent = `${roi.toFixed(2)}%`;
+  document.getElementById('annualRoi').textContent = `${annualROI.toFixed(2)}%`;
+  document.getElementById('investmentLength').textContent = `${duration.toFixed(1)} years`;
+
+  // Calculate percentages for the chart
+  const totalAmount = Math.abs(invested) + Math.abs(profit);
+  const investedPercent = (Math.abs(invested) / totalAmount) * 100;
+  const profitLossPercent = (Math.abs(profit) / totalAmount) * 100;
+
+  // Update the chart
+  document.getElementById('investedBar').style.width = `${investedPercent}%`;
+  document.getElementById('profitLossBar').style.width = `${profitLossPercent}%`;
+  
+  // Set color for profit/loss bar
+  const profitLossColor = profit >= 0 ? '#2ecc71' : '#e74c3c';
+  document.getElementById('profitLossBar').style.backgroundColor = profitLossColor;
+  document.getElementById('profitLossColor').style.backgroundColor = profitLossColor;
+
+  document.getElementById('investedPercent').textContent = `Invested: ${investedPercent.toFixed(1)}%`;
+  document.getElementById('profitLossPercent').textContent = `${profit >= 0 ? 'Profit' : 'Loss'}: ${profitLossPercent.toFixed(1)}%`;
+}
+
+function resetFields() {
+  document.getElementById('invested').value = '';
+  document.getElementById('returned').value = '';
+  document.getElementById('duration').value = '';
+  document.getElementById('profit').textContent = 'GHS 0.00';
+  document.getElementById('roi').textContent = '0.00%';
+  document.getElementById('annualRoi').textContent = '0.00%';
+  document.getElementById('investmentLength').textContent = '0 years';
+  document.getElementById('investedBar').style.width = '100%';
+  document.getElementById('profitLossBar').style.width = '0%';
+  document.getElementById('investedPercent').textContent = 'Invested: 100%';
+  document.getElementById('profitLossPercent').textContent = 'Profit/Loss: 0%';
+  document.getElementById('profitLossColor').style.backgroundColor = '#e0e0e0';
+}
+
+
+function calculateYield() {
+  const amountInvested = parseFloat(document.getElementById('amountInvested').value);
+  const discountRate = parseFloat(document.getElementById('discountRate').value) / 100;
+  const daysToMaturity = parseInt(document.getElementById('daysToMaturity').value);
+  
+  if (isNaN(amountInvested) || isNaN(discountRate) || isNaN(daysToMaturity)) {
+      alert('Please enter valid numbers for all fields.');
+      return;
+  }
+  
+  const faceValue = amountInvested / (1 - (discountRate * daysToMaturity / 365));
+  const interestEarned = faceValue - amountInvested;
+  const yield = (interestEarned / amountInvested) * (365 / daysToMaturity) * 100;
+  
+  document.getElementById('amountInvestedResult').textContent = `GHS ${amountInvested.toFixed(2)}`;
+  document.getElementById('interestEarnedResult').textContent = `GHS ${interestEarned.toFixed(2)}`;
+  document.getElementById('totalReturnResult').textContent = `GHS ${faceValue.toFixed(2)}`;
+  document.getElementById('annualizedYieldResult').textContent = `${yield.toFixed(2)}%`;
+}
+
+function refreshCalculator() {
+  document.getElementById('amountInvested').value = '';
+  document.getElementById('discountRate').value = '';
+  document.getElementById('daysToMaturity').value = '';
+  document.getElementById('amountInvestedResult').textContent = 'GHS 0.00';
+  document.getElementById('interestEarnedResult').textContent = 'GHS 0.00';
+  document.getElementById('totalReturnResult').textContent = 'GHS 0.00';
+  document.getElementById('annualizedYieldResult').textContent = '0.00%';
+}
