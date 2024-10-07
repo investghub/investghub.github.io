@@ -16,16 +16,17 @@
 <link rel="icon" type="image/png" href="./favicon-16x16.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="description" content="Use our free calculator resource for your financial, investment and crypto needs.">
+<meta name="description" content="Use these free calculator resource for your financial, investment and crypto needs.">
 <meta name="apple-mobile-web-app-title" content="InvestGHub">
 <title>InvestGHub - Calculators</title>
 <meta property="og:url" content="https://investghub.com/calculators.html" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="InvestGHub - Calculators" />
-<meta property="og:description" content="Use our free calculator resource for your financial, investment and crypto needs." />
+<meta property="og:description" content="Use these free calculator resource for your financial, investment and crypto needs." />
 <meta property="og:site_name" content="InvestGHub" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2024-10-04T17:00:18+00:00" />
+<meta property="article:modified_time" content="2024-10-07T06:00:18+00:00" />
 <link rel="canonical" href="https://investghub.com/calculators.html" />
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
 <!-- Google Font -->
@@ -68,7 +69,7 @@ HEADER
 					
 					<h1 class="display-4 secondfont mb-3 font-weight-bold">Calculators</h1>
 					<p class="mb-3">
-						Use our free calculator resource for your financial, investment and crypto needs.					</p>
+						Use these free calculator resource for your financial, investment and crypto needs.					</p>
 					
 				</div>
 				<div class="col-md-6 pr-0">
@@ -89,14 +90,190 @@ MAIN
 		</div>
 		<div class="col-md-12 col-lg-8">
 			<article class="article-post">
-				<p style="font-size: 40px; font-weight: bold;">Currently under construction. Check back soon.</p>
-				
 
+				<button class="accordion">RETURN ON INVESTMENT (ROI)</button>
+				<div class="panel">
+				  <p>The Return on Investment (ROI) calculator is a tool designed to help individuals and businesses 
+					measure the profitability of their investments. By comparing the gains or losses relative to the 
+					initial investment, this calculator offers a quick way to assess the efficiency of financial 
+					decisions. It is commonly used to evaluate various types of investments, from stocks and real 
+					estate to marketing campaigns. An ROI calculator simplifies complex financial analysis, making 
+					it easier for users to make informed choices and optimize their returns.<br>
+				<br>
+				<a href="#roi-section"><button>ROI CALCULATOR</button></a>
+			</p>
+				</div>
+				
+				<button class="accordion">TREASURY BILL (T-BILL)</button>
+				<div class="panel">
+				  <p>The Treasury Bill (T-bill) calculator is a tool that helps investors determine the potential returns 
+					on short-term government securities known as Treasury Bills. T-bills are typically considered low-risk 
+					investments, and this calculator allows users to estimate their earnings based on factors like purchase 
+					price, maturity value, and holding period. By simplifying the calculation process, a T-bill calculator 
+					enables investors to quickly assess the profitability and suitability of these investments for their 
+					financial goals.<br>
+					<br>
+					<a href="#t-bill-section"><button>TREASURY BILL CALCULATOR</button></a>
+				  </p>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<h2 id="roi-section">ROI CALCULATOR</h2>
+		<div class="container-roi">
+			<div class="input-section">
+				<label style="color:blue;" for="invested">
+					Amount Invested (GHS):
+					<span class="tooltip-roi">❔
+						<span class="tooltiptext-roi">The initial amount of money you invested in Ghana Cedis (GHS)</span>
+					</span>
+				</label>
+				<input type="number" id="invested" min="0" step="0.01" placeholder="Enter amount (not less than 0)">
+				
+				<label style="color:blue;" for="returned">
+					Amount Returned (GHS):
+					<span class="tooltip-roi">❔
+						<span class="tooltiptext-roi">The total amount you received back from your investment in Ghana Cedis (GHS)</span>
+					</span>
+				</label>
+				<input type="number" id="returned" min="0" step="0.01" required placeholder="Enter amount (not less than 0)">
+				
+				<label style="color:blue;" for="duration">
+					Investment Time (Years):
+					<span class="tooltip-roi">❔
+						<span class="tooltiptext-roi">The total duration of your investment in years</span>
+					</span>
+				</label>
+				<input type="number" id="duration" min="0.1" step="0.1" required placeholder="Enter time in years (minimum 0.1)">
+				
+				<div class="button-group">
+					<button id="calculateBtn" onclick="calculateROI()">Calculate ROI</button>
+					<button id="resetBtn" onclick="resetFields()">Reset</button>
+				</div>
+			</div>
+			
+			<div class="result-section">
+				<div id="result">
+					<div class="result-field">
+						<span style="color:blue;" class="result-label">
+							Total Profit/Loss:
+							<span class="tooltip-roi">❔
+								<span class="tooltiptext-roi">The difference between the amount returned and the amount invested</span>
+							</span>
+						</span>
+						<span class="result-value" id="profit">GHS 0.00</span>
+					</div>
+					<div class="result-field">
+						<span style="color:blue;" class="result-label">
+							ROI:
+							<span class="tooltip-roi">❔
+								<span class="tooltiptext-roi">Return on Investment: The percentage gain or loss on your investment</span>
+							</span>
+						</span>
+						<span class="result-value" id="roi">0.00%</span>
+					</div>
+					<div class="result-field">
+						<span style="color:blue;" class="result-label">
+							Annualized ROI:
+							<span class="tooltip-roi">❔
+								<span class="tooltiptext-roi">The average annual return on investment, taking into account the investment duration</span>
+							</span>
+						</span>
+						<span class="result-value" id="annualRoi">0.00%</span>
+					</div>
+					<div class="result-field">
+						<span style="color:blue;" class="result-label">
+							Investment Length:
+							<span class="tooltip-roi">❔
+								<span class="tooltiptext-roi">The duration of your investment in years</span>
+							</span>
+						</span>
+						<span class="result-value" id="investmentLength">0 years</span>
+					</div>
+				</div>
+				<div class="chart-container">
+					<div id="investedBar"></div>
+					<div id="profitLossBar"></div>
+				</div>
+				<div class="chart-legend">
+					<div class="legend-item">
+						<div class="legend-color invested-color"></div>
+						<span id="investedPercent">Invested: 100%</span>
+					</div>
+					<div class="legend-item">
+						<div class="legend-color" id="profitLossColor"></div>
+						<span id="profitLossPercent">Profit/Loss: 0%</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<h2 id="t-bill-section">TREASURY BILL CALCULATOR</h2>
+		<div class="calculator-container">
+			<div class="calculator">
+				<label for="amountInvested">
+					Amount Invested (GHS):
+					<div class="tooltip-tbill">ⓘ
+						<span class="tooltiptext-tbill">The amount of money you want to invest in the Treasury Bill.</span>
+					</div>
+				</label>
+				<input type="number" id="amountInvested" min="0" step="0.01">
+				
+				<label for="discountRate">
+					Discount Rate (%):
+					<div class="tooltip-tbill">ⓘ
+						<span class="tooltiptext-tbill">The percentage difference between the purchase price and face value, expressed on an annualized basis.</span>
+					</div>
+				</label>
+				<input type="number" id="discountRate" min="0" max="100" step="0.01">
+				
+				<label for="daysToMaturity">
+					Days to Maturity:
+					<div class="tooltip-tbill">ⓘ
+						<span class="tooltiptext-tbill">The number of days until the Treasury Bill reaches its maturity date.</span>
+					</div>
+				</label>
+				<input type="number" id="daysToMaturity" min="1" max="365">
+				
+				<div class="button-container">
+					<button onclick="calculateYield()">Calculate Return</button>
+					<button id="refreshButton" onclick="refreshCalculator()">Refresh</button>
+				</div>
+			</div>
+			
+			<div class="results">
+				<h1>Results</h1>
+				<div id="result">
+					<div class="result-field">
+						<span class="result-label">Amount Invested:</span>
+						<span class="result-value" id="amountInvestedResult">GHS 0.00</span>
+					</div>
+					<div class="result-field">
+						<span class="result-label">Interest Earned:</span>
+						<span class="result-value" id="interestEarnedResult">GHS 0.00</span>
+					</div>
+					<div class="result-field">
+						<span class="result-label">Total Return:</span>
+						<span class="result-value" id="totalReturnResult">GHS 0.00</span>
+					</div>
+					<div class="result-field">
+						<span class="result-label">Annualized Yield:</span>
+						<span class="result-value" id="annualizedYieldResult">0.00%</span>
+					</div>
+				</div>
+			</div>
+		</div>		
+		
+		
 			</article>
 		</div>
 	</div>
-</div>
-
+<br>
+<br>
+<br>
 <div class="container pt-4 pb-4">
 	<h5 class="font-weight-bold spanborder"><span>Related Posts</span></h5>
 	<div class="row">
