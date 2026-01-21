@@ -2,5 +2,9 @@ User-agent: *
 Disallow: /terms-of-service.html
 Disallow: /credits.html
 Disallow: /docs.html
+Disallow: /nav-article.html
+Disallow: /nav-investment.html
+Disallow: /nav-crypto.html
+Disallow: /nav-learn.html
 
-Sitemap: https://investghub.com/sitemap.xml
+Sitemap: https://investghub.github.io/sitemap.xml
